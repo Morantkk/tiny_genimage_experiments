@@ -7,6 +7,9 @@ cache/
 *.png
 *.npz
 
+# ...but keep the documentation figures
+!docs/figures/**/*.png
+
 # Experiment outputs
 outputs/
 logs/
