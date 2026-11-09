@@ -151,9 +151,9 @@ python compare_patch_optimization.py     # 切块/频域融合对比
 如果这个项目对你有帮助：
 
 ```bibtex
-@misc{chen2026tinygenimage,
+@misc{morantkk2026tinygenimage,
   title  = {Tiny-GenImage: AIGC Image Detection and Generator Attribution},
-  author = {Chen, Fakun},
+  author = {Morantkk},
   year   = {2026},
   url    = {https://github.com/Morantkk/tiny_genimage_experiments}
 }
