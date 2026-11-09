@@ -3,7 +3,9 @@
 基于 ResNet18、频域分支、Patch-Transformer 与传统手工特征融合的 AIGC 图像检测实验。
 本项目关注的不是"能不能测出 AI 图"，而是**跨生成器泛化**与**生成器溯源**这两个更难的问题。
 
-![实验总体流程](docs/figures/15_pipeline.png)
+![实验总体流程](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/15_pipeline.png)
+
+> 文中图表托管在 jsDelivr CDN（国内网络可直接显示），原图同时保存在仓库 [`docs/figures/`](docs/figures/) 目录。
 
 ---
 
@@ -43,7 +45,7 @@ Tiny-GenImage 验证集中 `Real` 类样本数远多于单个生成器类。只�
 
 ## 二、实验路线
 
-![实验全景](docs/figures/00_experiment_overview.png)
+![实验全景](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/00_experiment_overview.png)
 
 项目分两条线推进：
 
@@ -70,7 +72,7 @@ Tiny-GenImage 以 parquet shard 存储。`common.py` 中的 `prepare_image_cache
 
 ## 四、模型
 
-![三路融合结构](docs/figures/05_fusion_architecture.png)
+![三路融合结构](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/05_fusion_architecture.png)
 
 | 实验名 | 结构要点 |
 |---|---|
@@ -95,7 +97,7 @@ Tiny-GenImage 以 parquet shard 存储。`common.py` 中的 `prepare_image_cache
 
 ### 融合机制的数学形式
 
-![四种融合机制](docs/figures/16_fusion_mechanisms.png)
+![四种融合机制](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/16_fusion_mechanisms.png)
 
 设深度特征 `z`、传统特征投影 `h`：
 
@@ -110,7 +112,7 @@ Tiny-GenImage 以 parquet shard 存储。`common.py` 中的 `prepare_image_cache
 
 ### 5.1 早期二分类：同分布饱和，外部分布崩塌
 
-![Original 测试集二分类指标](docs/figures/13_original_binary_metrics.png)
+![Original 测试集二分类指标](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/13_original_binary_metrics.png)
 
 | 模型 | Accuracy | Precision | Recall | F1 | AUC |
 |---|---|---|---|---|---|
@@ -119,7 +121,7 @@ Tiny-GenImage 以 parquet shard 存储。`common.py` 中的 `prepare_image_cache
 
 同分布上两者都接近满分，说明任务本身不难。但换到 Synthbuster 外部分布：
 
-![Synthbuster 外部检测率](docs/figures/14_synthbuster_detection.png)
+![Synthbuster 外部检测率](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/14_synthbuster_detection.png)
 
 CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 
@@ -140,7 +142,7 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 
 ### 5.2 主实验：四模型对比
 
-![四模型多指标对比](docs/figures/01_model_metric_comparison.png)
+![四模型多指标对比](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/01_model_metric_comparison.png)
 
 | 模型 | 多分类 Acc | Macro-F1 | 二分类 Acc | Fake-F1 | AUC |
 |---|---|---|---|---|---|
@@ -149,25 +151,25 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 | Patch-Transformer | 71.60% | 58.98% | 81.91% | 80.32% | 91.44% |
 | Fusion Model | **72.14%** | **61.02%** | **82.26%** | **81.08%** | **91.68%** |
 
-![Macro-F1 训练曲线](docs/figures/02_macro_f1_curve.png)
+![Macro-F1 训练曲线](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/02_macro_f1_curve.png)
 
-![Fake-F1 训练曲线](docs/figures/03_binary_fake_f1_curve.png)
+![Fake-F1 训练曲线](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/03_binary_fake_f1_curve.png)
 
 频域分支接在全局 ResNet 向量后几乎零收益（55.53% → 55.54%）。保留局部 patch 结构后才有实质提升
 （→ 58.98%），说明**局部结构与频域线索需要一起看才有效**。
 
-![逐类 F1 对比](docs/figures/04_per_class_f1.png)
+![逐类 F1 对比](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/04_per_class_f1.png)
 
 `Real`、`BigGAN`、`GLIDE` 识别较好；`ADM`、`SD14`、`Midjourney`、`Wukong` 是主要失分项。
 `SD14` 在所有模型中 F1 为 0——该类在验证集中几乎无法被召回。
 
-![Fusion 多分类混淆矩阵](docs/figures/06_fusion_cm_multiclass.png)
+![Fusion 多分类混淆矩阵](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/06_fusion_cm_multiclass.png)
 
-![Fusion 二分类混淆矩阵](docs/figures/07_fusion_cm_binary.png)
+![Fusion 二分类混淆矩阵](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/07_fusion_cm_binary.png)
 
 ### 5.3 Patch 参数优化
 
-![Patch 优化结果](docs/figures/08_patch_optimization.png)
+![Patch 优化结果](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/08_patch_optimization.png)
 
 | Patch 设置 | 多分类 Acc | Macro-F1 | Fake-F1 | AUC |
 |---|---|---|---|---|
@@ -175,7 +177,7 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 | g3 + CLS + Global | 74.80% | 65.38% | 84.12% | 93.22% |
 | g3 + CLS（无 global） | **76.21%** | **67.11%** | **84.80%** | **93.90%** |
 
-![Macro-F1 趋势](docs/figures/09_patch_macro_f1_trend.png)
+![Macro-F1 趋势](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/09_patch_macro_f1_trend.png)
 
 3×3 提供更细的空间划分；去掉 global token 反而更好——global token 会把局部伪影重新压缩成全局平均特征，
 削弱局部生成痕迹的辨识度。
@@ -191,7 +193,7 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 
 ### 5.5 传统特征筛选：从统计量到空间结构
 
-![传统特征控制实验](docs/figures/10_traditional_fusion.png)
+![传统特征控制实验](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/10_traditional_fusion.png)
 
 | 实验 | 多分类 Acc | Macro-F1 | Fake-F1 | AUC |
 |---|---|---|---|---|
@@ -216,7 +218,7 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 
 改用网格化统计：按 4×4 网格分别计算 LBP、HOG 和 FFT 高频残差，使传统特征保留粗粒度空间位置。
 
-![空间结构特征筛选](docs/figures/18_strict_spatial_macro_f1.png)
+![空间结构特征筛选](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/18_strict_spatial_macro_f1.png)
 
 | 特征组 | 多分类 Acc | Macro-F1 | Fake-F1 | AUC |
 |---|---|---|---|---|
@@ -232,7 +234,7 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 
 ### 5.7 最终融合模型
 
-![最终融合对比](docs/figures/19_final_fusion_macro_f1.png)
+![最终融合对比](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/19_final_fusion_macro_f1.png)
 
 | 模型 | 多分类 Acc | Macro-F1 | Fake-F1 | AUC |
 |---|---|---|---|---|
@@ -243,9 +245,9 @@ CNN AI 检出率 **5.87%**，ResNet18 **0.83%**。
 | **Patch + 空间传统 gated** | **86.27%** | **81.49%** | 91.88% | 97.88% |
 | Patch + 空间传统 cross-attn | 85.76% | 80.51% | 91.61% | 97.67% |
 
-![最优模型多分类混淆矩阵](docs/figures/11_best_cm_multiclass.png)
+![最优模型多分类混淆矩阵](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/11_best_cm_multiclass.png)
 
-![最优模型二分类混淆矩阵](docs/figures/12_best_cm_binary.png)
+![最优模型二分类混淆矩阵](https://cdn.jsdelivr.net/gh/Morantkk/tiny_genimage_experiments@main/docs/figures/12_best_cm_binary.png)
 
 **gated 优于 cross-attention 的原因**：当前传统特征是紧凑向量而非长序列 token。
 门控直接学习"当前样本更信深度特征还是传统特征"，具备动态选择与噪声抑制作用；
