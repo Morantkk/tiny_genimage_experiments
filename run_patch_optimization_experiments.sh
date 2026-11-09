@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
-PYTHON=/home/liweixiang/anaconda3/envs/ddcolor/bin/python
+PYTHON=${PYTHON:-python}
 NPROC=8
 EPOCHS=${EPOCHS:-20}
 BATCH_SIZE=${BATCH_SIZE:-32}

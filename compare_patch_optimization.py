@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-OUTPUT_ROOT = Path("/data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments/outputs")
+OUTPUT_ROOT = Path(__file__).resolve().parent / "outputs"
 EXPERIMENTS = [
     "patch_transformer",
     "patch_opt_g2_cls_global",

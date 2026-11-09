@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-OUTPUT_ROOT = Path("/data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments/outputs")
+OUTPUT_ROOT = Path(__file__).resolve().parent / "outputs"
 EXPERIMENTS = [
     "resnet18_baseline",
     "resnet18_traditional_first20_concat",

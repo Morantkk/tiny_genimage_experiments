@@ -300,9 +300,10 @@ def save_eval_outputs(out_dir: Path, labels, preds, probs, metrics: dict) -> Non
 
 def default_argparser(experiment_name: str):
     parser = argparse.ArgumentParser(experiment_name)
-    parser.add_argument("--data-root", default="/data2/liweixiang/chenfakun/ai_detected/dataset/Tiny-GenImage")
-    parser.add_argument("--cache-root", default="/data2/liweixiang/chenfakun/ai_detected/dataset/Tiny-GenImage_cache")
-    parser.add_argument("--output-root", default="/data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments/outputs")
+    repo_root = Path(__file__).resolve().parent
+    parser.add_argument("--data-root", default=str(repo_root / "data" / "Tiny-GenImage"))
+    parser.add_argument("--cache-root", default=str(repo_root / "cache" / "Tiny-GenImage"))
+    parser.add_argument("--output-root", default=str(repo_root / "outputs"))
     parser.add_argument("--epochs", type=int, default=20)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--image-size", type=int, default=224)

@@ -21,7 +21,7 @@ KEYS = [
 
 
 def main():
-    output_root = Path("/data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments/outputs")
+    output_root = Path(__file__).resolve().parent / "outputs"
     rows = []
     for model_name in MODELS:
         metrics_path = output_root / model_name / "best_eval" / "metrics.json"

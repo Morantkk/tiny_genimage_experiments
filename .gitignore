@@ -1,0 +1,38 @@
+# Datasets and caches (never commit these)
+data/
+cache/
+*.parquet
+*.jpg
+*.jpeg
+*.png
+*.npz
+
+# Experiment outputs
+outputs/
+logs/
+runs/
+*.pth
+*.pt
+*.ckpt
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.python-version
+
+# Tooling / editors
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

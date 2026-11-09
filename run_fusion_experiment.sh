@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
-PY=/home/liweixiang/anaconda3/envs/ddcolor/bin/python
-LOG_DIR=/data2/liweixiang/chenfakun/ai_detected/code/tiny_genimage_experiments/logs
+PY=${PYTHON:-python}
+LOG_DIR=logs
 mkdir -p "$LOG_DIR"
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
